@@ -13,8 +13,9 @@ export const getProductsById: APIGatewayProxyHandler = async (event) => {
   console.log(`event ${JSON.stringify(event)}`);
 
   try {
-    const {rows: products} = await client.query('select p.id, p.description, p.title, p.price, p.img_url as image, ' +
-      's.count from product_list p left join stock_list s on p.id = s.product_id where p.id = $1', [productId]).then(res => res)
+    const {rows: products} = await client.query(
+      'select p.id, p.description, p.title, p.price, p.img_url as image, ' +
+      's.count from product_list p left join stock_list s on p.id = s.product_id where p.id = $1', [productId])
     return getSampleResponse(products.length ? products : null)
   } catch (e) {
     console.error('Error during database request executing', productId);

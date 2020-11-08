@@ -14,16 +14,17 @@ export const createProduct: APIGatewayProxyHandler = async (event) => {
   console.log(`event ${JSON.stringify(event)}`, `body ${JSON.stringify(event.body)}`);
 
   try {
-    const {rows: products} = await client.query('with insert_in_products as (insert into product_list ' +
-      '(title, description, price) values ($1, $2, $3) returning *), ' +
-      'insert_in_stock as (insert into stock_list (product_id, count) ' +
-      'values ((select id from insert_in_products), $4) returning count, product_id) ' +
-      'select insert_in_products.id, insert_in_products.title, insert_in_products.description, ' +
-      'insert_in_products.price, insert_in_stock.count from insert_in_products ' +
-      'left join insert_in_stock on insert_in_products.id = insert_in_stock.product_id', [title, description, price, count]).then(res => res);
+    await client.query('BEGIN');
+    const {rows: [{id: insertedProductId}]} = await client.query('insert into product_list (title, description, price) values ($1, $2, $3) returning id', [title, description, price]);
+    await client.query('insert into stock_list (product_id, count) values ($1, $2)', [insertedProductId, count]);
+    const {rows: products} = await client.query(
+      'select p.id, p.description, p.title, p.price, p.img_url as image, ' +
+      's.count from product_list p left join stock_list s on p.id = s.product_id where p.id = $1', [insertedProductId])
+    await client.query('COMMIT');
     return getSampleResponse(products)
   } catch (e) {
     console.error('Error during database request executing', e);
+    await client.query('ROLLBACK')
     return getErrorResponse()
   } finally {
     client.end();
