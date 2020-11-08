@@ -1,7 +1,8 @@
 export class ProductModel {
   id: string;
-  imgUrl: string;
+  image: string;
   description: string;
   title: string;
   price: number;
+  count: number;
 }
