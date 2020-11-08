@@ -1,0 +1,65 @@
+[
+  {
+    "description": "Prolongs human life indefinitely",
+    "id": "7567ec4b-b10c-48c5-9345-fc73c48a80aa",
+    "imgUrl": "https://i.pinimg.com/originals/d4/c2/23/d4c223f6772abb00c5d8f930b662b58e.jpg",
+    "price": 777,
+    "title": "Elixir of life"
+  },
+  {
+    "description": "Gives temporary luck",
+    "id": "7567ec4b-b10c-48c5-9345-fc73c48a80a0",
+    "imgUrl": "https://fb.ru/misc/i/thumb/a/1/1/0/7/8/6/2/1107862.jpg",
+    "price": 567,
+    "title": "Felix Felicis"
+  },
+  {
+    "description": "Changes your appearance",
+    "id": "7567ec4b-b10c-48c5-9345-fc73c48a80a2",
+    "imgUrl": "https://h5j4s3b8.rocketcdn.me/wp-content/uploads/2013/07/Polyjuice-Potion2.jpg",
+    "price": 135,
+    "title": "Polyjuice Potion"
+  },
+  {
+    "description": "Makes you tell the truth",
+    "id": "7567ec4b-b10c-48c5-9345-fc73c48a80a1",
+    "imgUrl": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ab0c6cf2-7258-49d9-adde-243d75c08bc5/d4837nf-73a93e92-3ef9-4801-a2a9-240ad0bdeeea.jpg/v1/fill/w_900,h_600,q_75,strp/veritaserum_by_reyvolution_d4837nf-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3siaGVpZ2h0IjoiPD02MDAiLCJwYXRoIjoiXC9mXC9hYjBjNmNmMi03MjU4LTQ5ZDktYWRkZS0yNDNkNzVjMDhiYzVcL2Q0ODM3bmYtNzNhOTNlOTItM2VmOS00ODAxLWEyYTktMjQwYWQwYmRlZWVhLmpwZyIsIndpZHRoIjoiPD05MDAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.yxGRPmv-bkiftjYKKCinLKqq2rsbeSmmMsjfeAsFpI8",
+    "price": 442,
+    "title": "Veritaserum"
+  },
+  {
+    "description": "Makes you invisible",
+    "id": "7567ec4b-b10c-48c5-9345-fc73c48a80a7",
+    "imgUrl": "https://i.pinimg.com/originals/28/6b/e3/286be30098ae2f2c5a6eeebf508ba005.jpg",
+    "price": 239,
+    "title": "Invisibility Potion"
+  },
+  {
+    "description": "Leads to recovery lost bones",
+    "id": "7567ec4b-b10c-48c5-9345-fc73348a80a1",
+    "imgUrl": "https://i.etsystatic.com/12412609/r/il/aaba43/1056622142/il_570xN.1056622142_7oap.jpg",
+    "price": 322,
+    "title": "Skele-Gro"
+  },
+  {
+    "description": "Helps to muffle lycanthropy",
+    "id": "7567ec4b-b10c-48c5-9445-fc73c48a80a2",
+    "imgUrl": "https://i.etsystatic.com/7609576/r/il/0b84bb/1989919455/il_570xN.1989919455_tero.jpg",
+    "price": 593,
+    "title": "Wolfsbane Potion"
+  },
+  {
+    "description": "Invokes intensive artificial love",
+    "id": "7567ec4b-b10c-45c5-9345-fc73c48a80j1",
+    "imgUrl": "https://i.pinimg.com/originals/81/04/b1/8104b17ec580ca9bf2813393e83fc482.jpg",
+    "price": 13,
+    "title": "Amortentia Love Potion"
+  },
+  {
+    "description": "Strong sedative",
+    "id": "7567ec4b-b10c-45c5-9345-fc73c48a80o1",
+    "imgUrl": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/dfebdd90-f50b-408f-ae94-44d57cfd5cfc/d5jdj1b-3400a766-cfb7-4361-9b31-a32e4c777c7d.jpg/v1/fill/w_900,h_856,q_75,strp/draught_of_living_death_by_spoon333_d5jdj1b-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3siaGVpZ2h0IjoiPD04NTYiLCJwYXRoIjoiXC9mXC9kZmViZGQ5MC1mNTBiLTQwOGYtYWU5NC00NGQ1N2NmZDVjZmNcL2Q1amRqMWItMzQwMGE3NjYtY2ZiNy00MzYxLTliMzEtYTMyZTRjNzc3YzdkLmpwZyIsIndpZHRoIjoiPD05MDAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.9Pa3UUxBaledn-X_g_KiKFczPQdhMILP7CcMrfFf_pw",
+    "price": 368,
+    "title": "Draught of Living Death"
+  }
+]
