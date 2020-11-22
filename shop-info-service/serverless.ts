@@ -28,7 +28,11 @@ const serverlessConfiguration: Serverless = {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       SQS_URL: {Ref: 'SQSQueue'},
       SNS_ARN: {Ref: 'SNSTopic'},
-
+      PG_HOST: 'lesson4-instance.cbhoet9bv4z8.eu-west-1.rds.amazonaws.com',
+      PG_PORT: 5432,
+      PG_DATABASE: 'lesson4',
+      PG_USERNAME: 'postgres',
+      PG_PASSWORD: 'XV23OlWRjp3hE26u7Txl'
     },
     iamRoleStatements: [
       {
@@ -64,7 +68,7 @@ const serverlessConfiguration: Serverless = {
       SNSSubscription: {
         Type: 'AWS::SNS::Subscription',
         Properties: {
-          Endpoint: 'cxvxcvxcvxcv95@bk.ru',
+          Endpoint: 'dfsgsdfsdfdsf.dsfsdfsdf@bk.ru',
           Protocol: 'email',
           TopicArn: {
             Ref: 'SNSTopic'
