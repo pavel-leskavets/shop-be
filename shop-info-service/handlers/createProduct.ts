@@ -8,12 +8,13 @@ import dbOptions from "../helpers/getDbOptions";
 
 
 export const createProduct: APIGatewayProxyHandler = async (event) => {
-  const {title, description, price, count} = JSON.parse(event.body);
   const client = new Client(dbOptions);
-  await client.connect();
   console.log(`event ${JSON.stringify(event)}`, `body ${JSON.stringify(event.body)}`);
 
   try {
+    const {title, description, price, count} = JSON.parse(event.body);
+    await client.connect();
+
     await client.query('BEGIN');
     const {rows: [{id: insertedProductId}]} = await client.query('insert into product_list (title, description, price) values ($1, $2, $3) returning id', [title, description, price]);
     await client.query('insert into stock_list (product_id, count) values ($1, $2)', [insertedProductId, count]);
