@@ -3,6 +3,8 @@ import 'source-map-support/register';
 import AWS from 'aws-sdk';
 import * as csv from 'csv-parser';
 
+import sendScv from '../helpers/sendScv';
+
 export const importFileParser: S3Handler = async (event) => {
   const s3 = new AWS.S3({region: 'eu-west-1'});
 
@@ -15,6 +17,7 @@ export const importFileParser: S3Handler = async (event) => {
     await new Promise((resolve, reject) => {
       s3Stream.pipe(csv())
         .on('data', data => {
+          sendScv(data);
           console.log(data)
         })
         .on('error', error => reject(error))

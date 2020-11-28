@@ -1,4 +1,4 @@
-import { Serverless } from 'serverless/aws';
+import {Serverless} from 'serverless/aws';
 
 const serverlessConfiguration: Serverless = {
   service: {
@@ -20,12 +20,69 @@ const serverlessConfiguration: Serverless = {
     name: 'aws',
     runtime: 'nodejs12.x',
     region: 'eu-west-1',
+    stage: 'dev',
     apiGateway: {
       minimumCompressionSize: 1024,
     },
     environment: {
-      AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
+      AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
+      SQS_URL: {Ref: 'SQSQueue'},
+      SNS_ARN: {Ref: 'SNSTopic'}
     },
+    iamRoleStatements: [
+      {
+        Effect: 'Allow',
+        Action: 'sqs:*',
+        Resource: {
+          'Fn::GetAtt': ['SQSQueue', 'Arn']
+        }
+      },
+      {
+        Effect: 'Allow',
+        Action: 'sns:*',
+        Resource: {
+          Ref: 'SNSTopic'
+        }
+      }
+    ]
+  },
+  resources: {
+    Resources: {
+      SQSQueue: {
+        Type: 'AWS::SQS::Queue',
+        Properties: {
+          QueueName: 'catalogItemsQueue'
+        }
+      },
+      SNSTopic: {
+        Type: 'AWS::SNS::Topic',
+        Properties: {
+          TopicName: 'createProductTopic'
+        }
+      },
+      SNSSubscription: {
+        Type: 'AWS::SNS::Subscription',
+        Properties: {
+          Endpoint: 'dfsgsdfsdfdsf.dsfsdfsdf@bk.ru',
+          Protocol: 'email',
+          TopicArn: {
+            Ref: 'SNSTopic'
+          }
+        }
+      }
+    },
+    Outputs: {
+      SQSQueueUrl: {
+        Value: {
+          Ref: 'SQSQueue'
+        }
+      },
+      SQSQueueArn: {
+        Value: {
+          'Fn::GetAtt': ['SQSQueue', 'Arn']
+        }
+      }
+    }
   },
   functions: {
     getProducts: {
@@ -60,6 +117,19 @@ const serverlessConfiguration: Serverless = {
             method: 'post',
             path: 'products',
             cors: true
+          }
+        }
+      ]
+    },
+    catalogBatchProcess: {
+      handler: 'handler.catalogBatchProcess',
+      events: [
+        {
+          sqs: {
+            batchSize: 5,
+            arn: {
+              "Fn::GetAtt": ["SQSQueue", "Arn"]
+            }
           }
         }
       ]
