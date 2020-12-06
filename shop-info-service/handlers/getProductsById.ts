@@ -9,6 +9,7 @@ import dbOptions from "../helpers/getDbOptions";
 export const getProductsById: APIGatewayProxyHandler = async (event) => {
   const client = new Client(dbOptions);
   const { productId } = event.pathParameters;
+
   console.log(`event ${JSON.stringify(event)}`);
 
   try {
