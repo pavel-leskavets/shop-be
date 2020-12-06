@@ -1,5 +1,21 @@
 import type {Serverless} from 'serverless/aws';
 
+const GATEWAY_PROPERTIES = {
+  Type: 'AWS::ApiGateway::GatewayResponse',
+  Properties: {
+    ResponseParameters: {
+      'gatewayresponse.header.Access-Control-Allow-Origin': "'*'",
+      'gatewayresponse.header.Access-Control-Allow-Credentials': "'true'",
+      'gatewayresponse.header.Access-Control-Allow-Headers': "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+      'gatewayresponse.header.Access-Control-Allow-Methods': "'GET,OPTIONS'"
+    },
+    ResponseType: 'ACCESS_DENIED',
+    RestApiId: {
+      Ref: 'ApiGatewayRestApi'
+    }
+  }
+}
+
 const serverlessConfiguration: Serverless = {
   service: {
     name: 'import-service'
@@ -42,6 +58,12 @@ const serverlessConfiguration: Serverless = {
       }
     ]
   },
+  resources: {
+    Resources: {
+      GatewayResponseAccessDenied: {...GATEWAY_PROPERTIES},
+      GatewayResponseUnauthorized: {...GATEWAY_PROPERTIES, Properties: {...GATEWAY_PROPERTIES.Properties, ResponseType: 'UNAUTHORIZED'}}
+    }
+  },
   functions: {
     importProductFile: {
       handler: 'handler.importProductFile',
@@ -52,6 +74,12 @@ const serverlessConfiguration: Serverless = {
             path: 'import',
             cors: {
               origins: "*"
+            },
+            authorizer: {
+              name: 'basicAuthorizer',
+              arn: "arn:aws:lambda:eu-west-1:273922851725:function:authorization-service-dev-basicAuthorizer",
+              identitySource: "method.request.header.Authorization",
+              type: 'token'
             },
             request: {
               parameters: {
